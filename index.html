@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZenPet - Productos para Mascotas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #F8EDEB;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: #FCD5CE;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: #8B5E3C;
+    }
+
+    nav {
+      background-color: #FAE1DD;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 80px;
+      z-index: 999;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #8B5E3C;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #D67A6A;
+    }
+
+    section {
+      padding: 40px 20px;
+      animation: fadeIn 0.5s ease;
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h2 {
+      color: #8B5E3C;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .producto, .catalogo-item {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px auto;
+      max-width: 500px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .producto:hover, .catalogo-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .producto h3, .catalogo-item h3 {
+      color: #D67A6A;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input, textarea, button {
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #FCD5CE;
+      color: #333;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #fbbdaf;
+    }
+
+    footer {
+      background-color: #FAE1DD;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      color: #8B5E3C;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .icono {
+      width: 40px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #D67A6A;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      z-index: 1001;
+    }
+
+    /* Contenedor imágenes productos tienda */
+    .imagenes-tienda {
+      max-width: 700px;
+      margin: 30px auto 0 auto;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .imagenes-tienda img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .imagenes-tienda img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="huella" class="icono" />ZenPet</h1>
+    <p>Tu tienda de confianza para consentir a tu mascota</p>
+  </header>
+
+  <nav>
+    <a onclick="mostrarSeccion('index')">Inicio</a>
+    <a onclick="mostrarSeccion('tienda')">Tienda</a>
+    <a onclick="mostrarSeccion('nosotros')">Nosotros</a>
+    <a onclick="mostrarSeccion('contacto')">Contacto</a>
+  </nav>
+
+  <main>
+    <section id="index">
+      <h2>Productos Destacados</h2>
+      <div class="producto">
+        <h3>🐶 Alimento Premium para Perros</h3>
+        <p>Nutrición completa y balanceada para tu mejor amigo.</p>
+        <button onclick="agregarAlCarrito('Alimento para Perros')">Agregar al carrito</button>
+      </div>
+      <div class="producto">
+        <h3>🐱 Rascador para Gatos</h3>
+        <p>Ideal para mantener a tu gato entretenido y sus uñas saludables.</p>
+        <button onclick="agregarAlCarrito('Rascador para Gatos')">Agregar al carrito</button>
+      </div>
+    </section>
+
+    <section id="tienda" class="active">
+      <h2>Catálogo Completo</h2>
+      <div class="catalogo-item">
+        <h3>🧶 Juguete de Cuerda</h3>
+        <p>Perfecto para juegos interactivos con tu mascota.</p>
+        <button onclick="agregarAlCarrito('Juguete de Cuerda')">Agregar al carrito</button>
+      </div>
+      <div class="catalogo-item">
+        <h3>👜 Transportadora de Mascotas</h3>
+        <p>Seguridad y comodidad para tus viajes.</p>
+        <button onclick="agregarAlCarrito('Transportadora')">Agregar al carrito</button>
+      </div>
+      <div class="catalogo-item">
+        <h3>💡 Collar Reflectante</h3>
+        <p>Mayor visibilidad en paseos nocturnos.</p>
+        <button onclick="agregarAlCarrito('Collar Reflectante')">Agregar al carrito</button>
+      </div>
+      <div class="catalogo-item">
+        <h3>🐕 Cama para Perros</h3>
+        <p>Cómoda y suave, ideal para el descanso de tu mascota.</p>
+        <button onclick="agregarAlCarrito('Cama para Perros')">Agregar al carrito</button>
+      </div>
+      <div class="catalogo-item">
+        <h3>🐈 Arenero para Gatos</h3>
+        <p>Fácil de limpiar y con buen control de olores.</p>
+        <button onclick="agregarAlCarrito('Arenero para Gatos')">Agregar al carrito</button>
+      </div>
+      <div class="catalogo-item">
+        <h3>🦴 Huesos de Juguete</h3>
+        <p>Duraderos y seguros para morder y jugar.</p>
+        <button onclick="agregarAlCarrito('Huesos de Juguete')">Agregar al carrito</button>
+      </div>
+
+      <h2>Imágenes Relacionadas</h2>
+      <div class="imagenes-tienda">
+        <img src="https://media.istockphoto.com/id/1389757327/es/foto/juego-de-accesorios-para-mascotas-sobre-fondo-rosa-concepto-de-cuidado-y-entrenamiento-de.jpg?s=612x612&w=0&k=20&c=COw3R9Lyzk92NxuYVJKqJOylpcbieW0YNhYafG28G1k=" alt="Juguete de cuerda" />
+        <img src="https://waldos.com.mx/cdn/shop/files/100093452ROSA_3.jpg?v=1707237590&width=1214" alt="Transportadora de mascotas" />
+        <img src="https://m.media-amazon.com/images/I/71NCqSDcE-L.jpg" alt="Collar reflectante" />
+        <img src="https://m.media-amazon.com/images/I/61K4aRo-+EL._UF1000,1000_QL80_.jpg" alt="Cama para perros" />
+        <img src="https://d38qrl83hrqn1t.cloudfront.net/media/catalog/product/cache/e5313a059d82e47a0dd0c73b13afb6be/s/a/sala-carmina-platino-decorado-perro-3.jpg" alt="Arenero para gatos" />
+        <img src="https://i5.walmartimages.com/asr/a22ade02-006c-40af-8cae-cc7b2b78ef79.58f49d5c6d012f34fe9be65d29a6041a.png?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Huesos de juguete" />
+      </div>
+    </section>
+
+    <section id="nosotros">
+      <h2>Sobre Nosotros</h2>
+      <p style="max-width: 600px; margin: auto;">
+        En ZenPet, creemos que las mascotas son parte de la familia. Desde nuestros inicios en 2020, hemos trabajado para ofrecer productos de calidad que mejoren la vida de los animales y sus dueños. Nuestra visión es ser la tienda de referencia para quienes desean lo mejor para sus compañeros peludos.
+      </p>
+    </section>
+
+    <section id="contacto">
+      <h2>Contáctanos</h2>
+      <form>
+        <input type="text" placeholder="Nombre" required />
+        <input type="email" placeholder="Correo electrónico" required />
+        <textarea placeholder="Tu mensaje" rows="5" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ZenPet - Todos los derechos reservados.</p>
+  </footer>
+
+  <button id="topBtn" onclick="scrollToTop()">↑</button>
+
+  <script>
+    const topBtn = document.getElementById('topBtn');
+    window.onscroll = function () {
+      topBtn.style.display = document.documentElement.scrollTop > 100 ? 'block' : 'none';
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function agregarAlCarrito(producto) {
+      alert(producto + ' ha sido agregado al carrito 🛒');
+    }
+
+    function mostrarSeccion(id) {
+      document.querySelectorAll('main section').forEach(seccion => {
+        seccion.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+      scrollToTop();
+    }
+  </script>
+</body>
+</html>
+
+
+
